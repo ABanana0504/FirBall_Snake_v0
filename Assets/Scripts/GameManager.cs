@@ -10,20 +10,17 @@ public class GameManager : MonoBehaviour
     public GameObject foodPrefab;
     int i=0;
 	void Start () {
-        InvokeRepeating("MakeFood", 1, 2);
+        Invoke("MakeFood", 1f);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    void MakeFood()
+
+
+    public void MakeFood()
     {
         int x = Random.Range(-30, 30);
         int y = Random.Range(-22, 22);
         Instantiate(foodPrefab, new Vector2(x,y), Quaternion.identity);
         i++;
-        Debug.Log(i);
+        //Debug.Log(i);
     }
 
     public void GameOver()

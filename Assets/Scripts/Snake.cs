@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
 //using UnityEngine.SceneManagement;
+
 public class Snake : MonoBehaviour
 {
 
     List<Transform> bodyList = new List<Transform>();
-    GameManager gm;
+    public GameManager gm;
+    public ComboSystem comboSystem;
 
     //开始默认向上移动
     Vector2 direction = Vector2.up;
@@ -72,18 +74,20 @@ public class Snake : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Food"))
         {
-            Debug.Log("简简单单的果实!");
+            //Debug.Log("简简单单的果实!");
             Destroy(other.gameObject);            
             ate = true;
             ateCount++;
-            Debug.Log(ateCount);
+            gm.MakeFood();
+            comboSystem.isAte = true;
+            //Debug.Log(ateCount);
 
         }
         else
         {
             //如果撞上的不是果实
             //
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Scene");
             //Application.LoadLevel(1);
         }
     }
